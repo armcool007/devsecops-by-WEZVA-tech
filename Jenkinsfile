@@ -1,15 +1,15 @@
 
 pipeline {
-  //agent { label 'build' }
+  agent { label 'build' }
    environment { 
-        registry = "adamtravis/democicd" 
-        registryCredential = 'dockerhub' 
+        registry = "armcoo004/democicd_adman_devsecops" 
+        registryCredential = 'doc-acct' 
    }
 
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'main', credentialsId: 'GitlabCred', url: 'https://gitlab.com/learndevopseasy/devsecops/springboot-build-pipeline.git'
+        git branch: 'main', credentialsId: 'GitlabCred', url: 'https://github.com/armcool007/devsecops-by-WEZVA-tech.git'
       }
     }
   
@@ -27,7 +27,7 @@ pipeline {
       }
     }
 
-   stage('Stage III: SCA') {
+   stage('Stage III: SCA(software composition analysis or static analysis)') {
       steps { 
         echo "Running Software Composition Analysis using OWASP Dependency-Check ..."
         sh "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64; mvn org.owasp:dependency-check-maven:check"
@@ -37,7 +37,7 @@ pipeline {
    stage('Stage IV: SAST') {
       steps { 
         echo "Running Static application security testing using SonarQube Scanner ..."
-        withSonarQubeEnv('mysonarqube') {
+        withSonarQubeEnv('sona-babu') {
             sh 'mvn sonar:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html -Dsonar.projectName=wezvatech'
        }
       }
@@ -72,14 +72,14 @@ pipeline {
    stage('Stage VII: Scan Image ') {
       steps { 
         echo "Scanning Image for Vulnerabilities"
-        sh "trivy image --scanners vuln --offline-scan adamtravis/democicd:latest > trivyresults.txt"
+        sh "trivy image --scanners vuln --offline-scan armcoo004/democicd_adman_devsecops:latest > trivyresults.txt"
         }
     }
           
    stage('Stage VIII: Smoke Test ') {
       steps { 
         echo "Smoke Test the Image"
-        sh "docker run -d --name smokerun -p 8080:8080 adamtravis/democicd"
+        sh "docker run -d --name smokerun -p 8080:8080 armcoo004/democicd_adman_devsecops"
         sh "sleep 90; ./check.sh"
         sh "docker rm --force smokerun"
         }
@@ -88,3 +88,4 @@ pipeline {
   }
 
 }
+
