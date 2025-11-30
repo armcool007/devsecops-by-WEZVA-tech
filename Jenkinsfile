@@ -2,7 +2,7 @@
 pipeline {
   agent { label 'build' }
    environment { 
-        registry = "armcoo004/democicd_adman_devsecops" 
+        registry = "armcool004/democicd_adman_devsecops" 
         registryCredential = 'doc-acct' 
    }
 
@@ -72,14 +72,14 @@ pipeline {
    stage('Stage VII: Scan Image ') {
       steps { 
         echo "Scanning Image for Vulnerabilities"
-        sh "trivy image --scanners vuln --offline-scan armcoo004/democicd_adman_devsecops:latest > trivyresults.txt"
+        sh "trivy image --scanners vuln --offline-scan armcool004/democicd_adman_devsecops:latest > trivyresults.txt"
         }
     }
           
    stage('Stage VIII: Smoke Test ') {
       steps { 
         echo "Smoke Test the Image"
-        sh "docker run -d --name smokerun -p 8080:8080 armcoo004/democicd_adman_devsecops"
+        sh "docker run -d --name smokerun -p 8080:8080 armcool004/democicd_adman_devsecops"
         sh "sleep 90; ./check.sh"
         sh "docker rm --force smokerun"
         }
@@ -88,6 +88,7 @@ pipeline {
   }
 
 }
+
 
 
 
