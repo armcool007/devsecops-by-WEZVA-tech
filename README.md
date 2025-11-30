@@ -41,6 +41,10 @@ $ sudo docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 ## Step 5: Enable Sonarqube webhook for Quality Gates & Install dependency-check plugin
 - [ ] Generate webhook & add the Jenkins URL as follows - http://URL:8080/sonarqube-webhook/
 
+## step 5: for SCA to enable 
+- go to sonarqube --> administration tab --> marketplace --> i understand the risk (search "dependency check") --> install --> restart.
+
+
 
 
 
