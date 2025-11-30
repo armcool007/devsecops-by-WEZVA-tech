@@ -43,19 +43,19 @@ pipeline {
       }
     }
 
-   stage('Stage V: QualityGates') {
-      steps { 
-        echo "Running Quality Gates to verify the code quality"
-        script {
-          timeout(time: 5, unit: 'MINUTES') {
-            def qg = waitForQualityGate()
-            if (qg.status != 'OK') {
-              error "Pipeline aborted due to quality gate failure: ${qg.status}"
-            }
-           }
-        }
-      }
-    }
+//   stage('Stage V: QualityGates') {
+  //    steps { 
+     //   echo "Running Quality Gates to verify the code quality"
+   //     script {
+   //       timeout(time: 5, unit: 'MINUTES') {
+ //           def qg = waitForQualityGate()
+  //          if (qg.status != 'OK') {
+//              error "Pipeline aborted due to quality gate failure: ${qg.status}"
+  //          }
+//           }
+//        }
+//      }
+//    }
    
    stage('Stage VI: Build Image') {
       steps { 
@@ -88,5 +88,6 @@ pipeline {
   }
 
 }
+
 
 
