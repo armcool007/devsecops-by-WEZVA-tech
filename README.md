@@ -13,7 +13,7 @@
 - [ ] SonarQube Scanner
 - [ ] Quality Gates
 
-## Step 2: Install Docker, Java8, Java11 & Trivy on Build Server
+## Step 2: Install Docker, Java8, Java11 & Trivy and Maven on Build Server
 ```
 $ sudo ./setup.sh
 for trivy:
@@ -43,6 +43,7 @@ $ sudo docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 
 ## step 5: for SCA to enable 
 - go to sonarqube --> administration tab --> marketplace --> i understand the risk (search "dependency check") --> install --> restart.
+
 
 
 
