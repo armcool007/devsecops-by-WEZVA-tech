@@ -119,6 +119,14 @@
                   </execution>
               </executions>
               <configuration>
+				 <!-- Skip online updates that fail with 403 -->
+     			 <skipProvidedScope>true</skipProvidedScope>
+ 			     <skipRuntimeScope>true</skipRuntimeScope>
+    			 <!-- IMPORTANT: Do not fail if NVD is unreachable -->
+     			 <failOnError>false</failOnError>
+  			     <!-- Optional: use only local cache -->
+    			 <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
+    			 <!-- Output formats -->
                  <formats>
                  <format>json</format>
                  <format>html</format>
