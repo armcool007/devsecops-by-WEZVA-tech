@@ -16,6 +16,11 @@
 ## Step 2: Install Docker, Java8, Java11 & Trivy on Build Server
 ```
 $ sudo ./setup.sh
+for trivy:
+add repo
+  echo deb https://aquasecurity.github.io/trivy-repo/deb jammy main | sudo tee /etc/apt/sources.list.d/trivy.list
+  sudo apt-get update
+  sudo apt-get install trivy -y
 ```
 
 ## Step 3: Install Sonrqube on the t2.medium server
@@ -35,6 +40,7 @@ $ sudo docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 
 ## Step 5: Enable Sonarqube webhook for Quality Gates & Install dependency-check plugin
 - [ ] Generate webhook & add the Jenkins URL as follows - http://URL:8080/sonarqube-webhook/
+
 
 
 
