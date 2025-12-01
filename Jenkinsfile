@@ -11,10 +11,12 @@ pipeline {
     steps { 
         git branch: 'master', credentialsId: 'GitlabCred', url: 'https://github.com/armcool007/devsecops-by-WEZVA-tech.git'
       dir ("./${params.environment}") {
-              sh "sed -i 's/image: armcool004.*/image: armcool004\\/democicd_adman_devsecops:$IMAGETAG/g' deployment.yml" 
+              //sh "sed -i 's/image: armcool004.*/image: armcool004\\/democicd_adman_devsecops:$IMAGETAG/g' deployment.yml"
+		  	  sh "sed -i "s|image: armcool004/.*|image: armcool004/democicd_adman_devsecops:$IMAGETAG|g" deployment.yml"
 	    }
     }
   }
  }
 }
+
 
