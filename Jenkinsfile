@@ -61,10 +61,10 @@ pipeline {
       steps { 
         echo "Build Docker Image"
         script {
-			sh "docker build -t armcool004/democicd_adman_devsecops ."
-			withCredentials([usernameColonPassword(credentialsId: 'doc-acct', variable: 'doc-pass')]) {
-				sh "docker login -u armcool004 -p $doc-pass"
-				sh "docker push armcool004/democicd_adman_devsecops"
+			docker.withRegistry( '', registryCredential ) { 
+                 myImage = docker.build registry
+                 myImage.push()
+
 			}
         }
       }
@@ -89,6 +89,7 @@ pipeline {
   }
 
 }
+
 
 
 
