@@ -10,9 +10,9 @@ pipeline {
   {
     steps { 
         git branch: 'master', credentialsId: 'GitlabCred', url: 'https://github.com/armcool007/devsecops-by-WEZVA-tech.git'
-	  dir ("./kubernetes") {
-      //dir ("./${params.environment}") {
+		dir ("./${params.environment}") {
               //sh "sed -i 's/image: armcool004.*/image: armcool004\\/democicd_adman_devsecops:$IMAGETAG/g' deployment.yml"
+			  sh "cp ../kubernetes/* ."
 		  	  sh "sed -i \"s|image: ar4/.*|image: ar4/democicd_adman_devsecops:${params.IMAGETAG}|g\" deployment.yml"
 	    }
         sh 'git commit -a -m "New deployment for Build $IMAGETAG"'
@@ -22,6 +22,7 @@ pipeline {
   }
  }
 }
+
 
 
 
