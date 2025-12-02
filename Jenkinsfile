@@ -12,7 +12,7 @@ pipeline {
                 sh "git clone --branch master https://armcool007:${params.PASSWD}@github.com/armcool007/devsecops-by-WEZVA-tech.git ."
 
                 // Update image tag
-                dir("./kubernetes") {
+                dir("../kubernetes") {
                     sh "sed -i \"s|image: ar4/.*|image: ar4/democicd_adman_devsecops:${params.IMAGETAG}|g\" deployment.yml"
                 }
 
