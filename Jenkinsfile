@@ -13,7 +13,7 @@ pipeline {
 
                 // Update image tag
                 dir("../kubernetes") {
-                    sh "sed -i \"s|image: ar4/.*|image: ar4/democicd_adman_devsecops:${params.IMAGETAG}|g\" deployment.yml"
+                    sh "sed -i \"s|image: ar4/.*|image: armcool004/democicd_adman_devsecops:${params.IMAGETAG}|g\" deployment.yml"
                 }
 
                 // Configure Git identity
