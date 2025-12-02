@@ -92,9 +92,9 @@ pipeline {
           TAG = "$BUILD_NUMBER"
           echo "Trigger CD Pipeline"
           build wait: false,
-                job: 'springboot-cd-pipeline',
+                job: 'cd-pipeline',
                 parameters: [
-                  password(name: 'PASSWD', description: 'Please Enter your Gitlab password', value: params.PASSWD),
+                  password(name: 'PASSWD', description: 'Please Enter your Github password', value: params.PASSWD),
                   string(name: 'IMAGETAG', value: TAG)
                 ]
         }
@@ -104,3 +104,4 @@ pipeline {
   } // END stages
 
 } // END pipeline
+
