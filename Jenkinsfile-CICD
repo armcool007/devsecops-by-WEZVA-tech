@@ -63,7 +63,7 @@ pipeline {
         echo "Build Docker Image"
         script {
           docker.withRegistry('', registryCredential) {
-            myImage = docker.build registry
+            myImage = docker.build registry + ":$BUILD_NUMBER"
             myImage.push()
           }
         }
@@ -104,4 +104,5 @@ pipeline {
   } // END stages
 
 } // END pipeline
+
 
