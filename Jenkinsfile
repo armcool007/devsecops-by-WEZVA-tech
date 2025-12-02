@@ -14,18 +14,14 @@ pipeline {
               //sh "sed -i 's/image: armcool004.*/image: armcool004\\/democicd_adman_devsecops:$IMAGETAG/g' deployment.yml"
 		  	  sh "sed -i "s|image: armcool004/.*|image: armcool004/democicd_adman_devsecops:$IMAGETAG|g" deployment.yml"
 	    }
-		 // Configure git identity
-        sh 'git config user.email "jenkins@wezvatech.com"'
-        sh 'git config user.name "Jenkins"'
+        sh 'git commit -a -m "New deployment for Build $IMAGETAG"'
+	    sh "git push https://armcool007:$PASSWD@github.com/armcool007/devsecops-by-WEZVA-tech.git"
 
-                // Commit & Push
-        sh "git add ./${params.environment}/deployment.yml"
-        sh "git commit -m \"Update image tag to ${params.IMAGETAG} for ${params.environment} env\""
-        sh "git push origin master"
     }
   }
  }
 }
+
 
 
 
