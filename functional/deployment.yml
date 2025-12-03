@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: wezvatechdemo
-        image: armcool004/democicd_adman_devsecops:33
+        image: armcool004/democicd_adman_devsecops:35
         ports:
 
         - containerPort: 8080
